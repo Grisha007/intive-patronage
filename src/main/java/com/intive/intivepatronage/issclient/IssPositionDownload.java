@@ -23,7 +23,9 @@ public class IssPositionDownload {
         RestTemplate restTemplate = new RestTemplate();
         IssPosition issPosition = restTemplate.getForObject(
                 issUrl, IssPosition.class);
-        log.info(issPosition.toString() + "\n");
+        if (issPosition != null) {
+            log.info(issPosition.toString() + "\n");
+        }
         return issPosition;
     }
 }

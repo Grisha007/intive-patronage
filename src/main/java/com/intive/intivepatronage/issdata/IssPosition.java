@@ -23,6 +23,10 @@ public class IssPosition {
         return timestamp;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     @Override
     public String toString() {
         return "\n\n" + BLUE + "ISS position: " + RESET + "\n" + iss_position + "\n" +
