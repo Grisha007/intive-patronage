@@ -1,4 +1,4 @@
-package com.intive.intivepatronage.features;
+package com.intive.intivepatronage.feature;
 
 import org.springframework.stereotype.Component;
 

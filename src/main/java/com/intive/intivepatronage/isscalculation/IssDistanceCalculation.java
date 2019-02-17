@@ -1,5 +1,6 @@
 package com.intive.intivepatronage.isscalculation;
 
+import com.intive.intivepatronage.feature.ConsoleColors;
 import com.intive.intivepatronage.issdata.IssPositionList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -7,12 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class IssDistanceCalculation {
     private IssPositionList issPositionList;
-    private final String CYAN = "\033[0;36m";
-    private final String RESET = "\033[0m";
+    private ConsoleColors consoleColors;
+//    private final String CYAN = "\033[0;36m";
+//    private final String RESET = "\033[0m";
 
     @Autowired
-    public IssDistanceCalculation(IssPositionList issPositionList) {
+    public IssDistanceCalculation(IssPositionList issPositionList, ConsoleColors consoleColors) {
         this.issPositionList = issPositionList;
+        this.consoleColors = consoleColors;
     }
 
 
@@ -30,6 +33,6 @@ public class IssDistanceCalculation {
         double powSum = longitudeDeltaPow + latitudeDeltaPow;
         double distanceInKm = (Math.sqrt(powSum) * oneDegreeInKm);
         double roundedDistance = Math.round(distanceInKm * 100.0) / 100.0;
-        System.out.println(CYAN + "Distance between the first two ISS points: " + roundedDistance + " km" + RESET);
+        System.out.println(consoleColors.getCYAN() + "Distance between the first two ISS points: " + roundedDistance + " km" + consoleColors.getRESET());
     }
 }

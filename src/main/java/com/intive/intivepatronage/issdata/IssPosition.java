@@ -9,8 +9,8 @@ public class IssPosition {
     private IssCoordinate iss_position;
     private int timestamp;
     private String message;
-    private static final String BLUE = "\033[0;34m";
-    private static final String RESET = "\033[0m";
+    private final String BLUE = "\033[0;34m";
+    private final String RESET = "\033[0m";
 
     public IssPosition() {
     }

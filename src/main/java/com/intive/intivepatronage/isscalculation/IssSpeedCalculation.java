@@ -1,5 +1,6 @@
 package com.intive.intivepatronage.isscalculation;
 
+import com.intive.intivepatronage.feature.ConsoleColors;
 import com.intive.intivepatronage.issdata.IssPositionList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -7,12 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class IssSpeedCalculation {
     private IssPositionList issPositionList;
-    public static final String CYAN = "\033[0;36m";
-    private final String RESET = "\033[0m";
+    private ConsoleColors consoleColors;
+//    private final String CYAN = "\033[0;36m";
+//    private final String RESET = "\033[0m";
 
     @Autowired
-    public IssSpeedCalculation(IssPositionList issPositionList) {
+    public IssSpeedCalculation(IssPositionList issPositionList, ConsoleColors consoleColors) {
         this.issPositionList = issPositionList;
+        this.consoleColors = consoleColors;
     }
 
     public void calculateIssSpeed() {
@@ -38,6 +41,6 @@ public class IssSpeedCalculation {
         double speed = (distanceInKm / time);
         double roundedSpeed = Math.round(speed * 100.0) / 100.0;
 
-        System.out.println(CYAN + "ISS speed: " + roundedSpeed + " km/s" + RESET);
+        System.out.println(consoleColors.getCYAN() + "ISS speed: " + roundedSpeed + " km/s" + consoleColors.getRESET());
     }
 }
