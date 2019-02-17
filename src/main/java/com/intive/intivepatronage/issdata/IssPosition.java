@@ -15,6 +15,12 @@ public class IssPosition {
     public IssPosition() {
     }
 
+    public IssPosition(IssCoordinate iss_position, int timestamp, String message) {
+        this.iss_position = iss_position;
+        this.timestamp = timestamp;
+        this.message = message;
+    }
+
     public IssCoordinate getIss_position() {
         return iss_position;
     }
@@ -25,6 +31,18 @@ public class IssPosition {
 
     public String getMessage() {
         return message;
+    }
+
+    public void setIss_position(IssCoordinate iss_position) {
+        this.iss_position = iss_position;
+    }
+
+    public void setTimestamp(int timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     @Override

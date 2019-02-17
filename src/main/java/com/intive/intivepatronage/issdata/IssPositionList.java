@@ -15,4 +15,8 @@ public class IssPositionList {
     public ArrayList<IssPosition> getIssPosList() {
         return issPosList;
     }
+
+    public void setIssPosList(ArrayList<IssPosition> issPosList) {
+        this.issPosList = issPosList;
+    }
 }

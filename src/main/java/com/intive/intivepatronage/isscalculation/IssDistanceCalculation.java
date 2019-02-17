@@ -18,8 +18,23 @@ public class IssDistanceCalculation {
         this.consoleColors = consoleColors;
     }
 
+    public IssPositionList getIssPositionList() {
+        return issPositionList;
+    }
 
-    public void calculateDistanceBetweenTwoIssPosition() {
+    public void setIssPositionList(IssPositionList issPositionList) {
+        this.issPositionList = issPositionList;
+    }
+
+    public void setConsoleColors(ConsoleColors consoleColors) {
+        this.consoleColors = consoleColors;
+    }
+
+    public ConsoleColors getConsoleColors() {
+        return consoleColors;
+    }
+
+    public double calculateDistanceBetweenTwoIssPosition() {
         int pow = 2;
         double oneDegreeInKm = 111.1;
         double longitude1 = Double.parseDouble(issPositionList.getIssPosList().get(0).getIss_position().getLongitude());
@@ -34,5 +49,6 @@ public class IssDistanceCalculation {
         double distanceInKm = (Math.sqrt(powSum) * oneDegreeInKm);
         double roundedDistance = Math.round(distanceInKm * 100.0) / 100.0;
         System.out.println(consoleColors.getCYAN() + "Distance between the first two ISS points: " + roundedDistance + " km" + consoleColors.getRESET());
+        return roundedDistance;
     }
 }

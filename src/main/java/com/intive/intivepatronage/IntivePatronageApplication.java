@@ -18,8 +18,6 @@ public class IntivePatronageApplication {
         ConfigurableApplicationContext run = SpringApplication.run(IntivePatronageApplication.class, args);
         IssPositionDisplay issPosition = run.getBean(IssPositionDisplay.class);
         issPosition.displayIssPosition();
-//        IssPositionList issLocList = run.getBean(IssPositionList.class);
-//        issLocList.showIssLocList(issLocList.getIssPosList());
         IssDistanceCalculation issDistanceCalculation = run.getBean(IssDistanceCalculation.class);
         issDistanceCalculation.calculateDistanceBetweenTwoIssPosition();
         IssSpeedCalculation issSpeedCalculation = run.getBean(IssSpeedCalculation.class);

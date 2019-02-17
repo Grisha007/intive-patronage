@@ -18,7 +18,23 @@ public class IssSpeedCalculation {
         this.consoleColors = consoleColors;
     }
 
-    public void calculateIssSpeed() {
+    public IssPositionList getIssPositionList() {
+        return issPositionList;
+    }
+
+    public ConsoleColors getConsoleColors() {
+        return consoleColors;
+    }
+
+    public void setIssPositionList(IssPositionList issPositionList) {
+        this.issPositionList = issPositionList;
+    }
+
+    public void setConsoleColors(ConsoleColors consoleColors) {
+        this.consoleColors = consoleColors;
+    }
+
+    public double calculateIssSpeed() {
         int issLocListSize = issPositionList.getIssPosList().size();
         int pow = 2;
         double oneDegreeInKm = 111.1;
@@ -42,5 +58,7 @@ public class IssSpeedCalculation {
         double roundedSpeed = Math.round(speed * 100.0) / 100.0;
 
         System.out.println(consoleColors.getCYAN() + "ISS speed: " + roundedSpeed + " km/s" + consoleColors.getRESET());
+
+        return roundedSpeed;
     }
 }
