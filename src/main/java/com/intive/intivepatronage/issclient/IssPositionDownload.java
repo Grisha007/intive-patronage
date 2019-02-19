@@ -16,17 +16,6 @@ public class IssPositionDownload {
     @Value("${iss.position.api.url}")
     private String issUrl;
 
-    public IssPositionDownload() {
-    }
-
-    public static Logger getLog() {
-        return log;
-    }
-
-    public String getIssUrl() {
-        return issUrl;
-    }
-
     public IssPosition issPositionDownload() {
         RestTemplate restTemplate = new RestTemplate();
         IssPosition issPosition = restTemplate.getForObject(

@@ -1,46 +1,20 @@
 package com.intive.intivepatronage.isscalculation;
 
-import com.intive.intivepatronage.feature.ConsoleColors;
-import com.intive.intivepatronage.issdata.IssPositionList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.intive.intivepatronage.issdata.IssPosition;
 
-@Component
+import java.util.ArrayList;
+import java.util.List;
+
 public class IssDistanceCalculation {
-    private IssPositionList issPositionList;
-    private ConsoleColors consoleColors;
-//    private final String CYAN = "\033[0;36m";
-//    private final String RESET = "\033[0m";
 
-    @Autowired
-    public IssDistanceCalculation(IssPositionList issPositionList, ConsoleColors consoleColors) {
-        this.issPositionList = issPositionList;
-        this.consoleColors = consoleColors;
-    }
-
-    public IssPositionList getIssPositionList() {
-        return issPositionList;
-    }
-
-    public void setIssPositionList(IssPositionList issPositionList) {
-        this.issPositionList = issPositionList;
-    }
-
-    public void setConsoleColors(ConsoleColors consoleColors) {
-        this.consoleColors = consoleColors;
-    }
-
-    public ConsoleColors getConsoleColors() {
-        return consoleColors;
-    }
-
-    public double calculateDistanceBetweenTwoIssPosition() {
+    public static double calculateDistanceBetweenTwoIssPosition(List<IssPosition> issPosList) {
+        if(issPosList.size() > 2) {throw new IllegalArgumentException("Size...");}
         int pow = 2;
         double oneDegreeInKm = 111.1;
-        double longitude1 = Double.parseDouble(issPositionList.getIssPosList().get(0).getIss_position().getLongitude());
-        double latitude1 = Double.parseDouble(issPositionList.getIssPosList().get(0).getIss_position().getLatitude());
-        double longitude2 = Double.parseDouble(issPositionList.getIssPosList().get(1).getIss_position().getLongitude());
-        double latitude2 = Double.parseDouble(issPositionList.getIssPosList().get(1).getIss_position().getLatitude());
+        double longitude1 = Double.parseDouble(issPosList.get(0).getIssPosition().getLongitude());
+        double latitude1 = Double.parseDouble(issPosList.get(0).getIssPosition().getLatitude());
+        double longitude2 = Double.parseDouble(issPosList.get(1).getIssPosition().getLongitude());
+        double latitude2 = Double.parseDouble(issPosList.get(1).getIssPosition().getLatitude());
         double longitudeDelta = longitude2 - longitude1;
         double latitudeDelta = latitude2 - latitude1;
         double longitudeDeltaPow = Math.pow(longitudeDelta, pow);
@@ -48,7 +22,7 @@ public class IssDistanceCalculation {
         double powSum = longitudeDeltaPow + latitudeDeltaPow;
         double distanceInKm = (Math.sqrt(powSum) * oneDegreeInKm);
         double roundedDistance = Math.round(distanceInKm * 100.0) / 100.0;
-        System.out.println(consoleColors.getCYAN() + "Distance between the first two ISS points: " + roundedDistance + " km" + consoleColors.getRESET());
+        System.out.println("Distance between the first two ISS points: " + roundedDistance + " km");
         return roundedDistance;
     }
 }

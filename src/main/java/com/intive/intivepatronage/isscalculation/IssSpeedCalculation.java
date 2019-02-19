@@ -1,48 +1,22 @@
 package com.intive.intivepatronage.isscalculation;
 
-import com.intive.intivepatronage.feature.ConsoleColors;
-import com.intive.intivepatronage.issdata.IssPositionList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.intive.intivepatronage.issdata.IssPosition;
 
-@Component
+import java.util.ArrayList;
+import java.util.List;
+
 public class IssSpeedCalculation {
-    private IssPositionList issPositionList;
-    private ConsoleColors consoleColors;
-//    private final String CYAN = "\033[0;36m";
-//    private final String RESET = "\033[0m";
 
-    @Autowired
-    public IssSpeedCalculation(IssPositionList issPositionList, ConsoleColors consoleColors) {
-        this.issPositionList = issPositionList;
-        this.consoleColors = consoleColors;
-    }
-
-    public IssPositionList getIssPositionList() {
-        return issPositionList;
-    }
-
-    public ConsoleColors getConsoleColors() {
-        return consoleColors;
-    }
-
-    public void setIssPositionList(IssPositionList issPositionList) {
-        this.issPositionList = issPositionList;
-    }
-
-    public void setConsoleColors(ConsoleColors consoleColors) {
-        this.consoleColors = consoleColors;
-    }
-
-    public double calculateIssSpeed() {
-        int issLocListSize = issPositionList.getIssPosList().size();
+    public static double calculateIssSpeed(List<IssPosition> issPosList) {
+        if(issPosList.size() < 2) {throw new IllegalArgumentException("Size...");}
+        int issLocListSize = issPosList.size();
         int pow = 2;
         double oneDegreeInKm = 111.1;
 
-        double longitude1 = Double.parseDouble(issPositionList.getIssPosList().get(0).getIss_position().getLongitude());
-        double latitude1 = Double.parseDouble(issPositionList.getIssPosList().get(0).getIss_position().getLatitude());
-        double longitudeLast = Double.parseDouble(issPositionList.getIssPosList().get(issLocListSize - 1).getIss_position().getLongitude());
-        double latitudeLast = Double.parseDouble(issPositionList.getIssPosList().get(issLocListSize - 1).getIss_position().getLatitude());
+        double longitude1 = Double.parseDouble(issPosList.get(0).getIssPosition().getLongitude());
+        double latitude1 = Double.parseDouble(issPosList.get(0).getIssPosition().getLatitude());
+        double longitudeLast = Double.parseDouble(issPosList.get(issLocListSize - 1).getIssPosition().getLongitude());
+        double latitudeLast = Double.parseDouble(issPosList.get(issLocListSize - 1).getIssPosition().getLatitude());
         double longitudeDelta = longitudeLast - longitude1;
         double latitudeDelta = latitudeLast - latitude1;
         double longitudeDeltaPow = Math.pow(longitudeDelta, pow);
@@ -50,14 +24,14 @@ public class IssSpeedCalculation {
         double powSum = longitudeDeltaPow + latitudeDeltaPow;
         double distanceInKm = (Math.sqrt(powSum) * oneDegreeInKm);
 
-        int firstIssPositionTimestamp = issPositionList.getIssPosList().get(0).getTimestamp();
-        int lastIssPositionTimestamp = issPositionList.getIssPosList().get(issLocListSize - 1).getTimestamp();
-        int time = lastIssPositionTimestamp - firstIssPositionTimestamp;
+        Long firstIssPositionTimestamp = issPosList.get(0).getTimestamp();
+        Long lastIssPositionTimestamp = issPosList.get(issLocListSize - 1).getTimestamp();
+        Long time = lastIssPositionTimestamp - firstIssPositionTimestamp;
 
         double speed = (distanceInKm / time);
         double roundedSpeed = Math.round(speed * 100.0) / 100.0;
 
-        System.out.println(consoleColors.getCYAN() + "ISS speed: " + roundedSpeed + " km/s" + consoleColors.getRESET());
+        System.out.println("ISS speed: " + roundedSpeed + " km/s");
 
         return roundedSpeed;
     }

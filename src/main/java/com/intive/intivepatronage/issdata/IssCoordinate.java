@@ -1,18 +1,17 @@
 package com.intive.intivepatronage.issdata;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
-@Component
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IssCoordinate {
-    private String longitude;
-    private String latitude;
+    private final String longitude;
+    private final String latitude;
 
-    public IssCoordinate() {
-    }
-
-    public IssCoordinate(String longitude, String latitude) {
+    @JsonCreator
+    public IssCoordinate(@JsonProperty("longitude") String longitude, @JsonProperty("latitude") String latitude) {
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -23,14 +22,6 @@ public class IssCoordinate {
 
     public String getLatitude() {
         return latitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
     }
 
     @Override

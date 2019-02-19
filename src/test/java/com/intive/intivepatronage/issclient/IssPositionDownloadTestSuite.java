@@ -1,5 +1,6 @@
 package com.intive.intivepatronage.issclient;
 
+import com.intive.intivepatronage.issdata.IssPosition;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,11 @@ public class IssPositionDownloadTestSuite {
         //Given
 
         //When
-        issPositionDownload.getIssUrl();
+        IssPosition issPosition = issPositionDownload.issPositionDownload();
         //Then
-        assertEquals("http://api.open-notify.org/iss-now.json", issPositionDownload.getIssUrl());
+        assertNotNull(issPosition);
+        assertNotNull(issPosition.getTimestamp());
+        assertNotNull(issPosition.getMessage());
     }
 
 }
