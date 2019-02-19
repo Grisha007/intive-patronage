@@ -8,7 +8,7 @@ import java.util.List;
 public class IssDistanceCalculation {
 
     public static double calculateDistanceBetweenTwoIssPosition(List<IssPosition> issPosList) {
-        if(issPosList.size() > 2) {throw new IllegalArgumentException("Size...");}
+        if(issPosList.size() < 2) {throw new IllegalArgumentException("You need at least two ISS positions!");}
         int pow = 2;
         double oneDegreeInKm = 111.1;
         double longitude1 = Double.parseDouble(issPosList.get(0).getIssPosition().getLongitude());

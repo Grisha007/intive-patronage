@@ -8,7 +8,7 @@ import java.util.List;
 public class IssSpeedCalculation {
 
     public static double calculateIssSpeed(List<IssPosition> issPosList) {
-        if(issPosList.size() < 2) {throw new IllegalArgumentException("Size...");}
+        if(issPosList.size() < 2) {throw new IllegalArgumentException("You need at least two ISS positions!");}
         int issLocListSize = issPosList.size();
         int pow = 2;
         double oneDegreeInKm = 111.1;
