@@ -50,7 +50,7 @@ public class IssPositionDisplay {
     private int askUserForNumberOfReadings() {
         int numberOfReadings;
         do {
-            System.out.println("Please enter number of ISS position readings (between 2-10): ");
+            System.out.println("\n" + "Please enter number of ISS position readings (between 2-10): ");
             numberOfReadings = scanner.nextInt();
             System.out.println("\n" + "The number of ISS position readings: " + numberOfReadings + "\n");
             if (isInRange(numberOfReadings)) {
