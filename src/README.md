@@ -2,7 +2,7 @@
 
 ISSapp is for display ISS (International Space Station) position and calculate its speed.
 
-At first step User enter the number which define number of ISS positions reading.
+At first step User enter the number which define number of ISS positions readings.
 
 ## Start up instruction
 
